@@ -57,12 +57,14 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
     private static final String DISABLE_BOOTANIMATION_PREF = "cfx_disable_bootanimation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
     private static final String CFX_NAVBAR_HEIGHT = "cfx_navbar_height";
+    private static final String CFX_CENTER_CLOCK = "cfx_center_clock";
 
     private final Configuration mCurConfig = new Configuration();
 
     private CheckBoxPreference mCFXNavbar;
     private ListPreference mTransparency;
     private CheckBoxPreference mDisableBootanimPref;
+    private CheckBoxPreference mCenterClock;
     private ListPreference mNavigationBarHeight;
     private Context mContext;
 
@@ -73,8 +75,9 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mCFXNavbar = (CheckBoxPreference) findPreference(CFX_NAVBAR);
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
+        String disableBootanimation = SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0");
+        mDisableBootanimPref.setChecked("1".equals(disableBootanimation));
 
         mTransparency = (ListPreference) findPreference(CFX_STATUSBAR_TRANSPARENCY);
         mTransparency.setOnPreferenceChangeListener(this);
@@ -82,10 +85,11 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
                 .getContentResolver(), Settings.System.CFX_STATUSBAR_TRANSPARENCY,
                 0)));
 
-        String disableBootanimation = SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0");
-
+        mCFXNavbar = (CheckBoxPreference) findPreference(CFX_NAVBAR);
         mCFXNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), CFX_NAVBAR, 0) == 1);
-        mDisableBootanimPref.setChecked("1".equals(disableBootanimation));
+
+        mCenterClock = (CheckBoxPreference) findPreference(CFX_CENTER_CLOCK);
+        mCenterClock.setChecked(Settings.System.getInt(getActivity().getContentResolver(), CFX_CENTER_CLOCK, 0) == 1);
 
         mNavigationBarHeight = (ListPreference) findPreference(CFX_NAVBAR_HEIGHT);
         if (!mCFXNavbar.isChecked()) {
@@ -125,6 +129,9 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
         if (preference == mCFXNavbar) {
             Settings.System.putInt(getContentResolver(), CFX_NAVBAR, mCFXNavbar.isChecked() ? 1 : 0);
             hotRebootDialog();
+        } else if (preference == mCenterClock) {
+            Settings.System.putInt(getContentResolver(), CFX_CENTER_CLOCK, mCenterClock.isChecked() ? 1 : 0);
+            restartSystemUI();
         } else if (preference == mDisableBootanimPref) {
             SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
         }
@@ -162,7 +169,6 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
             result = Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CFX_NAVBAR_HEIGHT, height);
             hotRebootDialog();
             return true;
-            //restartSystemServer();
         }
         return false;
     }

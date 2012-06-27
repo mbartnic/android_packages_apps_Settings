@@ -45,7 +45,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="performance_settings"
+        android:key="cfx_status_bar"
         android:title="@string/cfx_statusbar">
     <ListPreference
         android:key="cfx_statusbar_transparency"
@@ -53,6 +53,9 @@
         android:summary="@string/cfx_statusbar_transparency_summary"
         android:entries="@array/cfx_statusbar_transparency_entries"
         android:entryValues="@array/cfx_statusbar_transparency_values" />
+    <CheckBoxPreference
+        android:key="cfx_center_clock"
+        android:title="@string/cfx_center_clock_title" />
     </PreferenceCategory>
 
     <PreferenceCategory

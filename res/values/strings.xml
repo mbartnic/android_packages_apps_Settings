@@ -33,8 +33,10 @@
     <string name="partition_info_sdext">/data/sdext2 (EXT)</string>
     <string name="partition_info_used_of">/</string>
     <string name="cfx_statusbar">Status Bar Settings</string>
-    <string name="cfx_statusbar_transparency">Statusbar Transparency</string>
+    <string name="cfx_statusbar_transparency">Status Bar Transparency</string>
     <string name="cfx_statusbar_transparency_summary">Warning: turning this on might affect performance and battery life. Your status bar will restart after changing this</string>
+    <string name="cfx_center_clock_title">Center Status Bar Clock</string>
+    <!--<string name="cfx_center_clock_summary"></string> -->
 
     <!-- String for ShortcutPickHelper -->
     <string name="picker_activities">Activities</string>
