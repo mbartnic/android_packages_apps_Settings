@@ -131,7 +131,6 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
             hotRebootDialog();
         } else if (preference == mCenterClock) {
             Settings.System.putInt(getContentResolver(), CFX_CENTER_CLOCK, mCenterClock.isChecked() ? 1 : 0);
-            restartSystemUI();
         } else if (preference == mDisableBootanimPref) {
             SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
         }
