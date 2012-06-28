@@ -55,7 +55,8 @@
         android:entryValues="@array/cfx_statusbar_transparency_values" />
     <CheckBoxPreference
         android:key="cfx_center_clock"
-        android:title="@string/cfx_center_clock_title" />
+        android:title="@string/cfx_center_clock_title" 
+        android:defaultValue="true" />
     </PreferenceCategory>
 
     <PreferenceCategory
