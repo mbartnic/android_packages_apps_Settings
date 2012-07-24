@@ -25,7 +25,8 @@
         android:title="@string/navigation_bar_title">
     <CheckBoxPreference
         android:key="cfx_navbar_enable"
-        android:title="@string/cfx_navbar_enable"
+        android:title="@string/cfx_navbar_title"
         android:summary="@string/cfx_navbar_summary"
         android:defaultValue="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

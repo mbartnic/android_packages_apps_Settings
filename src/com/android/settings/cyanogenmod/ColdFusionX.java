@@ -51,7 +51,7 @@ import com.android.settings.Utils;
 public class ColdFusionX extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "CFXSettings";
-    private static final String CFX_NAVBAR = "cfx_navbar_enable";
+    private static final String CFX_NAVBAR_ENABLE = "cfx_navbar_enable";
     private static final String CFX_STATUSBAR_TRANSPARENCY = "cfx_statusbar_transparency";
     private static final String DISABLE_BOOTANIMATION_PREF = "cfx_disable_bootanimation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
@@ -136,7 +136,7 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
-    public int mapChosenDpToPixels(int dp) {
+/*    public int mapChosenDpToPixels(int dp) {
         switch (dp) {
             case 48:
                 return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_48);
@@ -150,11 +150,11 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
                 return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_24);
         }
         return -1;
-    }
+    }*/
 
-/*    @Override
+    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        boolean result = false;
+/*        boolean result = false;
         if (preference == mTransparency) {
             int val = Integer.parseInt((String) newValue);
             result = Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CFX_STATUSBAR_TRANSPARENCY, val);
@@ -167,9 +167,9 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
             result = Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CFX_NAVBAR_HEIGHT, height);
             hotRebootDialog();
             return true;
-        }
+        }*/
         return false;
-    }*/
+    }
 
     private void hotRebootDialog() {
             new AlertDialog.Builder(getActivity())
