@@ -15,9 +15,12 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- CFX Settings -->
-    <string name="cfx_settings_title">ColdFusionX Settings</string>
-    <string name="cfx_navbar_title">Show Navbar</string>
-    <string name="cfx_navbar_summary">Also known as soft keys</string>
+    <string name="cfx_settings_title">ColdFusionX</string>
+    <string name="cfx_navigation_bar_title">Navigation bar</string>
+    <string name="cfx_enable_navigation_bar_title">Navigation bar</string>
+    <string name="cfx_enable_navigation_bar_summary">Also known as soft keys</string>
+    <string name="cfx_disable_boot_animation_title">Disable boot animation</string>
+    <string name="cfx_disable_boot_animation_summary">Results in a faster boot</string>
 
     <!-- Strings for Dialog yes button -->
     <string name="yes">"Yes"</string>

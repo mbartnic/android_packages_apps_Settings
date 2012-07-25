@@ -51,9 +51,9 @@ import com.android.settings.Utils;
 public class ColdFusionX extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "CFXSettings";
-    private static final String CFX_NAVBAR_ENABLE = "cfx_navbar_enable";
+    private static final String CFX_ENABLE_NAVIGATION_BAR = "cfx_enable_navigation_bar";
     private static final String CFX_STATUSBAR_TRANSPARENCY = "cfx_statusbar_transparency";
-    private static final String DISABLE_BOOTANIMATION_PREF = "cfx_disable_bootanimation";
+    private static final String DISABLE_BOOTANIMATION_PREF = "cfx_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
     private static final String CFX_NAVBAR_HEIGHT = "cfx_navbar_height";
     private static final String CFX_CENTER_CLOCK = "cfx_center_clock";
@@ -74,13 +74,13 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mCFXNavbar = (CheckBoxPreference) findPreference(CFX_NAVBAR_ENABLE);
-        mCFXNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), CFX_NAVBAR_ENABLE, 0) == 1);
+        mCFXNavbar = (CheckBoxPreference) findPreference(CFX_ENABLE_NAVIGATION_BAR);
+        mCFXNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), CFX_ENABLE_NAVIGATION_BAR, 0) == 1);
 
-/*        mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
+        mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         String disableBootanimation = SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0");
         mDisableBootanimPref.setChecked("1".equals(disableBootanimation));
-
+/*
         mTransparency = (ListPreference) findPreference(CFX_STATUSBAR_TRANSPARENCY);
         mTransparency.setOnPreferenceChangeListener(this);
         mTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity()
@@ -130,9 +130,9 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
             hotRebootDialog();
         }/* else if (preference == mCenterClock) {
             Settings.System.putInt(getContentResolver(), CFX_CENTER_CLOCK, mCenterClock.isChecked() ? 1 : 0);
-        } else if (preference == mDisableBootanimPref) {
+        }*/ else if (preference == mDisableBootanimPref) {
             SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
-        }*/
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

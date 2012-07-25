@@ -17,16 +17,24 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/cfx_settings_title"
-        android:key="cfx_prefs"
+        android:key="cfx_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
-
     <PreferenceCategory
-        android:key="navigation_bar"
-        android:title="@string/navigation_bar_title">
+        android:key="cfx_navigation_bar"
+        android:title="@string/cfx_navigation_bar_title">
     <CheckBoxPreference
-        android:key="cfx_navbar_enable"
-        android:title="@string/cfx_navbar_title"
-        android:summary="@string/cfx_navbar_summary"
+        android:key="cfx_enable_navigation_bar"
+        android:title="@string/cfx_enable_navigation_bar_title"
+        android:summary="@string/cfx_enable_navigation_bar_summary"
+        android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="cfx_performance"
+        android:title="@string/cfx_performance_title">
+    <CheckBoxPreference
+        android:key="cfx_disable_boot_animation"
+        android:title="@string/cfx_disable_boot_animation_title"
+        android:summary="@string/cfx_disable_boot_animation_summary"
         android:defaultValue="false" />
     </PreferenceCategory>
 </PreferenceScreen>
