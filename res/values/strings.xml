@@ -650,6 +650,25 @@
          [CHAR LIMIT=20] -->
     <string name="time_picker_title">Time</string>
 
+    <!-- Hardware keys #CM -->
+    <string name="hardware_keys_title">Hardware keys</string>
+    <string name="hardware_keys_bindings_title">Key bindings</string>
+    <string name="hardware_keys_home_long_press_title">Home long press action</string>
+    <string name="hardware_keys_menu_press_title">Menu key action</string>
+    <string name="hardware_keys_menu_long_press_title">Menu long press action</string>
+    <string name="hardware_keys_search_press_title">Search key action</string>
+    <string name="hardware_keys_search_long_press_title">Search long press action</string>
+    <string name="hardware_keys_app_switch_press_title">App-switch key action</string>
+    <string name="hardware_keys_app_switch_long_press_title">App-switch long press action</string>
+    <string name="hardware_keys_show_overflow_title">Show action overflow</string>
+    <string name="hardware_keys_show_overflow_summary">Displays the action overflow button within app interface</string>
+    <string name="hardware_keys_show_overflow_toast">Apps may not update until they are restarted</string>
+    <string name="hardware_keys_action_nothing">No action</string>
+    <string name="hardware_keys_action_menu">Open/close menu</string>
+    <string name="hardware_keys_action_app_switch">Recent apps switcher</string>
+    <string name="hardware_keys_action_search">Search</string>
+    <string name="hardware_keys_action_voice_search">Voice search</string>
+
     <!-- Security Settings --><skip />
 
     <!-- Security settings screen when using face unlock, setting option name to start an activity that allows the user to improve accuracy by adding additional enrollment faces -->

@@ -41,6 +41,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
+    private static final String KEY_HARDWARE_KEYS = "hardware_keys";
 
     private ListPreference mFontSizePref;
     private PreferenceScreen mPhoneDrawer;
@@ -72,8 +73,15 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         IWindowManager windowManager = IWindowManager.Stub.asInterface(ServiceManager.getService(Context.WINDOW_SERVICE));
         try {
             Preference naviBar = findPreference(KEY_NAVIGATION_BAR);
-            if (!windowManager.hasNavigationBar() && naviBar != null) {
-                getPreferenceScreen().removePreference(naviBar);
+            if (!windowManager.hasNavigationBar()) {
+                Log.e(TAG, "hasNavigationBar");
+                if ( naviBar != null) {
+                  Log.e(TAG, "naviBar != null");
+                  getPreferenceScreen().removePreference(naviBar);
+                }
+            } else {
+                getPreferenceScreen().removePreference(findPreference(KEY_HARDWARE_KEYS));
+                Log.e(TAG, "removed hardware keys");
             }
         } catch (RemoteException e) {
         }
