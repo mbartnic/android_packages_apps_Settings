@@ -126,11 +126,9 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mCFXNavbar) {
-            Settings.System.putInt(getContentResolver(), CFX_NAVBAR_ENABLE, mCFXNavbar.isChecked() ? 1 : 0);
+            Settings.System.putInt(getContentResolver(), CFX_ENABLE_NAVIGATION_BAR, mCFXNavbar.isChecked() ? 1 : 0);
             hotRebootDialog();
-        }/* else if (preference == mCenterClock) {
-            Settings.System.putInt(getContentResolver(), CFX_CENTER_CLOCK, mCenterClock.isChecked() ? 1 : 0);
-        }*/ else if (preference == mDisableBootanimPref) {
+        } else if (preference == mDisableBootanimPref) {
             SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
