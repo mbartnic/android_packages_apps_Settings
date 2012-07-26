@@ -1346,6 +1346,22 @@
         <item>10000</item>
     </integer-array>
 
+    <string-array name="cfx_navigation_bar_height_entries">
+        <item>48 dp (default)</item>
+        <item>42 dp</item>
+        <item>36 dp</item>
+        <item>30 dp</item>
+        <item>24 dp</item>
+     </string-array>
+
+     <string-array name="cfx_navigation_bar_height">
+        <item>48</item>
+        <item>42</item>
+        <item>36</item>
+        <item>30</item>
+        <item>24</item>
+     </string-array>
+
     <string-array name="dithering_entries" translatable="false">
         <item>@string/dithering_no_dither</item>
         <item>@string/dithering_color_banding</item>

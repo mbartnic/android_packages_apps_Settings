@@ -28,6 +28,11 @@
         android:summary="@string/cfx_enable_navigation_bar_summary"
         android:defaultValue="false" />
     </PreferenceCategory>
+    <ListPreference
+        android:entries="@array/cfx_navigation_bar_height_entries"
+        android:entryValues="@array/cfx_navigation_bar_height"
+        android:key="cfx_navigation_bar_height"
+        android:title="@string/cfx_navigation_bar_height_title" />
     <PreferenceCategory
         android:key="cfx_performance"
         android:title="@string/cfx_performance_title">

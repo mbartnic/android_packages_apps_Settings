@@ -53,9 +53,9 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
     private static final String TAG = "CFXSettings";
     private static final String CFX_ENABLE_NAVIGATION_BAR = "cfx_enable_navigation_bar";
     private static final String CFX_STATUSBAR_TRANSPARENCY = "cfx_statusbar_transparency";
-    private static final String DISABLE_BOOTANIMATION_PREF = "cfx_disable_boot_animation";
-    private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
-    private static final String CFX_NAVBAR_HEIGHT = "cfx_navbar_height";
+    private static final String CFX_DISABLE_BOOT_ANIMATION = "cfx_disable_boot_animation";
+    private static final String CFX_DISABLE_BOOT_ANIMATION_PROP = "persist.sys.nobootanimation";
+    private static final String CFX_NAVIGATION_BAR_HEIGHT = "cfx_navigation_bar_height";
     private static final String CFX_CENTER_CLOCK = "cfx_center_clock";
 
     private final Configuration mCurConfig = new Configuration();
@@ -77,8 +77,8 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
         mCFXNavbar = (CheckBoxPreference) findPreference(CFX_ENABLE_NAVIGATION_BAR);
         mCFXNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), CFX_ENABLE_NAVIGATION_BAR, 0) == 1);
 
-        mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
-        String disableBootanimation = SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0");
+        mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(CFX_DISABLE_BOOT_ANIMATION);
+        String disableBootanimation = SystemProperties.get(CFX_DISABLE_BOOT_ANIMATION_PROP, "0");
         mDisableBootanimPref.setChecked("1".equals(disableBootanimation));
 /*
         mTransparency = (ListPreference) findPreference(CFX_STATUSBAR_TRANSPARENCY);
@@ -86,16 +86,15 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
         mTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.CFX_STATUSBAR_TRANSPARENCY,
                 0)));
-
-        mCenterClock = (CheckBoxPreference) findPreference(CFX_CENTER_CLOCK);
-        mCenterClock.setChecked(Settings.System.getInt(getActivity().getContentResolver(), CFX_CENTER_CLOCK, 0) == 1);
-
-        mNavigationBarHeight = (ListPreference) findPreference(CFX_NAVBAR_HEIGHT);
+*/
+        mNavigationBarHeight = (ListPreference) findPreference(CFX_NAVIGATION_BAR_HEIGHT);
         if (!mCFXNavbar.isChecked()) {
             mNavigationBarHeight.setEnabled(false);
+        } else {
+            mNavigationBarHeight.setOnPreferenceChangeListener(this);
+            mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());
         }
-        mNavigationBarHeight.setOnPreferenceChangeListener(this)
-
+/*
         findPreference("cfx_about").setOnPreferenceClickListener(
             new OnPreferenceClickListener() {
                  public boolean onPreferenceClick(Preference preference) {
@@ -129,43 +128,45 @@ public class ColdFusionX extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), CFX_ENABLE_NAVIGATION_BAR, mCFXNavbar.isChecked() ? 1 : 0);
             hotRebootDialog();
         } else if (preference == mDisableBootanimPref) {
-            SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+            SystemProperties.set(CFX_DISABLE_BOOT_ANIMATION_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
-/*    public int mapChosenDpToPixels(int dp) {
+    public int mapChosenDpToPixels(int dp) {
         switch (dp) {
             case 48:
-                return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_48);
+                return getResources().getDimensionPixelSize(R.dimen.cfx_navigation_bar_48);
             case 42:
-                return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_42);
+                return getResources().getDimensionPixelSize(R.dimen.cfx_navigation_bar_42);
             case 36:
-                return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_36);
+                return getResources().getDimensionPixelSize(R.dimen.cfx_navigation_bar_36);
             case 30:
-                return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_30);
+                return getResources().getDimensionPixelSize(R.dimen.cfx_navigation_bar_30);
             case 24:
-                return getResources().getDimensionPixelSize(R.dimen.cfx_navbar_24);
+                return getResources().getDimensionPixelSize(R.dimen.cfx_navigation_bar_24);
         }
         return -1;
-    }*/
+    }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-/*        boolean result = false;
-        if (preference == mTransparency) {
+        boolean result = false;
+/*        if (preference == mTransparency) {
             int val = Integer.parseInt((String) newValue);
             result = Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CFX_STATUSBAR_TRANSPARENCY, val);
             restartSystemUI();
             return true;
-        } else if (preference == mNavigationBarHeight) {
+        } else*/ if (preference == mNavigationBarHeight) {
             String newVal = (String) newValue;
             int dp = Integer.parseInt(newVal);
             int height = mapChosenDpToPixels(dp);
-            result = Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CFX_NAVBAR_HEIGHT, height);
+            int index = mNavigationBarHeight.findIndexOfValue(newVal);
+            mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntries()[index]);
+            result = Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CFX_NAVIGATION_BAR_HEIGHT, height);
             hotRebootDialog();
             return true;
-        }*/
+        }
         return false;
     }
 
